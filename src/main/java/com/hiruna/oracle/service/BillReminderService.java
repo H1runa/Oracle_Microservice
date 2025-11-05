@@ -39,6 +39,16 @@ public class BillReminderService {
         }
     }
 
+    //delete
+    public Boolean deleteReminder(long id){
+        try{
+            billReminderRepo.deleteById(id);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
     //exists check
     public Boolean existsReminder(long id){
         return billReminderRepo.existsById(id);
