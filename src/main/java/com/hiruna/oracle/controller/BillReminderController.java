@@ -2,6 +2,7 @@ package com.hiruna.oracle.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,15 @@ public class BillReminderController {
         } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.status(409).body(e.getMessage()); //Conflict error
+        }
+    }
+
+    @PutMapping("")
+    public ResponseEntity<Boolean> updateReminder(@RequestBody BillReminder reminder) {
+        try{
+            return ResponseEntity.ok(billReminderService.updateReminder(reminder));
+        } catch (Exception e){
+            return ResponseEntity.status(500).body(false);
         }
     }
 }
