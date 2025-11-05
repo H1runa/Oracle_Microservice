@@ -14,6 +14,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.hiruna.oracle.data.model.BillReminder;
 import com.hiruna.oracle.service.BillReminderService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/billreminder")
@@ -53,4 +56,10 @@ public class BillReminderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
         }
     }
+
+    @GetMapping("/{id}/exists")
+    public ResponseEntity<Boolean> existsReminder(@PathVariable long id) {
+        return ResponseEntity.ok(billReminderService.existsReminder(id));
+    }
+    
 }
