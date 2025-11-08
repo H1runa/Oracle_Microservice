@@ -2,6 +2,8 @@ package com.hiruna.oracle.data.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.hiruna.oracle.interfaces.SyncModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,12 +13,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "APPUSER")
-public class AppUser {
+public class AppUser implements SyncModel {
     @Id
     @Column(name = "userID")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "manual-id")
     @GenericGenerator(name = "manual-id", strategy = "assigned")
-    private long userID;
+    private Long userID;
 
     @Column(name = "accountName")
     private String accountName;
@@ -27,17 +29,17 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(long userID, String accountName, String password) {
+    public AppUser(Long userID, String accountName, String password) {
         this.userID = userID;
         this.accountName = accountName;
         this.password = password;
     }
 
-    public long getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(long userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 
@@ -55,6 +57,11 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public Long getId(){
+        return this.userID;
     }
     
 }

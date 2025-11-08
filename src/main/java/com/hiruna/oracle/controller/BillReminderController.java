@@ -48,7 +48,7 @@ public class BillReminderController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteReminder(@PathVariable long id){
+    public ResponseEntity<Boolean> deleteReminder(@PathVariable Long id){
         try{
             return ResponseEntity.ok(billReminderService.deleteReminder(id));
         } catch (Exception e){
@@ -58,7 +58,7 @@ public class BillReminderController {
     }
 
     @GetMapping("/{id}/exists")
-    public ResponseEntity<Boolean> existsReminder(@PathVariable long id) {
+    public ResponseEntity<Boolean> existsReminder(@PathVariable Long id) {
         return ResponseEntity.ok(billReminderService.existsReminder(id));
     }
     

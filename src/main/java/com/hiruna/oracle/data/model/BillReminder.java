@@ -2,6 +2,8 @@ package com.hiruna.oracle.data.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.hiruna.oracle.interfaces.SyncModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,12 +13,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "BILLREMINDER")
-public class BillReminder {
+public class BillReminder implements SyncModel {
     @Id
     @Column(name = "remindID")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "manual-id")
     @GenericGenerator(name = "manual-id", strategy = "assigned")
-    private long remindID;
+    private Long remindID;
 
     @Column(name = "remindName")
     private String remindName;
@@ -28,12 +30,12 @@ public class BillReminder {
     private String status;
 
     @Column(name = "userID")
-    private long userID;
+    private Long userID;
 
     public BillReminder() {
     }
 
-    public BillReminder(long remindID, String remindName, String deadline, String status, long userID) {
+    public BillReminder(Long remindID, String remindName, String deadline, String status, Long userID) {
         this.remindID = remindID;
         this.remindName = remindName;
         this.deadline = deadline;
@@ -41,11 +43,11 @@ public class BillReminder {
         this.userID = userID;
     }
 
-    public long getRemindID() {
+    public Long getRemindID() {
         return remindID;
     }
 
-    public void setRemindID(long remindID) {
+    public void setRemindID(Long remindID) {
         this.remindID = remindID;
     }
 
@@ -73,12 +75,17 @@ public class BillReminder {
         this.status = status;
     }
 
-    public long getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(long userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
+    }
+
+    @Override
+    public Long getId(){
+        return this.remindID;
     }
 
 }

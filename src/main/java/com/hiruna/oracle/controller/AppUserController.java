@@ -54,7 +54,7 @@ public class AppUserController {
 
     //delete request
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAppUser(@PathVariable long id){
+    public ResponseEntity<?> deleteAppUser(@PathVariable Long id){
         try{
             Boolean state = appUserService.deleteAppUser(id);
             return ResponseEntity.ok(state);
@@ -66,7 +66,7 @@ public class AppUserController {
 
     //exists request
     @GetMapping("/{id}/exists")
-    public ResponseEntity<Boolean> existsAppUser(@PathVariable long id) {
+    public ResponseEntity<Boolean> existsAppUser(@PathVariable Long id) {
         return ResponseEntity.ok(appUserService.existsAppUser(id));
     }
     
