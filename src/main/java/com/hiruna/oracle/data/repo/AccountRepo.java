@@ -13,4 +13,7 @@ import jakarta.transaction.Transactional;
 public interface AccountRepo extends JpaRepository<Account, Long>{
     @Procedure(procedureName = "createAccount")
     void createAccount(Long p_accID, String p_accName, String p_description, Double p_initialAmount, Long p_userID, String p_accountType, String p_category, Double p_limit);
+
+    @Procedure(procedureName = "updateAccount")
+    void updateAccount(String p_accName, String p_description, Double p_limit, String p_category, Long p_accID);
 }

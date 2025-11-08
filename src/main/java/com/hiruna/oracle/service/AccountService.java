@@ -17,22 +17,24 @@ public class AccountService {
     }
 
     //insert
-    public Boolean createAccount(AccountDTO dto){
-        // System.out.println("Description is : "+dto.getDescription());
+    public Boolean createAccount(AccountDTO dto){        
         accountRepo.createAccount(dto.getAccID(), dto.getAccName(), dto.getDescription(), dto.getInitialAmount(), dto.getUserID(), dto.getAccountType(), dto.getCategory(), dto.getLimit());
         return true;
     }
 
     //update
-    public Boolean updateAccount(Account acc){
-        return genericEntityService.updateRecord(accountRepo, acc, (entity, updated)->{
-            entity.setAccName(updated.getAccName());
-            entity.setDescription(updated.getDescription());
-            entity.setBalance(updated.getBalance());
-            entity.setCreatedDate(updated.getCreatedDate());
-            entity.setStatus(updated.getStatus());
-            entity.setInitialAmount(updated.getInitialAmount());         
-        });
+    public Boolean updateAccount(AccountDTO dto){
+        // return genericEntityService.updateRecord(accountRepo, acc, (entity, updated)->{
+        //     entity.setAccName(updated.getAccName());
+        //     entity.setDescription(updated.getDescription());
+        //     entity.setBalance(updated.getBalance());
+        //     entity.setCreatedDate(updated.getCreatedDate());
+        //     entity.setStatus(updated.getStatus());
+        //     entity.setInitialAmount(updated.getInitialAmount());         
+        // });
+        System.out.println("LIMIT : "+dto.getLimit());
+        accountRepo.updateAccount(dto.getAccName(), dto.getDescription(), dto.getLimit(), dto.getCategory(), dto.getAccID());
+        return true;
     }
 
     //delete

@@ -39,7 +39,7 @@ public class AccountController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Boolean> updateAccount( @RequestBody Account entity) {
+    public ResponseEntity<Boolean> updateAccount( @RequestBody AccountDTO entity) {
         try{
             return ResponseEntity.ok(accountService.updateAccount(entity));
         } catch(Exception e){
