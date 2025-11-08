@@ -16,32 +16,12 @@ public class BillReminderService {
         this.billReminderRepo=billReminderRepo;
         this.genericEntityService=genericEntityService;
     }
-
-    //inserting
-    // public BillReminder createReminder(BillReminder reminder){
-    //     BillReminder saved_rem = billReminderRepo.save(reminder);
-    //     System.out.println("Bill Reminder saved to database");
-    //     return saved_rem;
-    // }
+   
     public BillReminder createReminder(BillReminder reminder){
         return genericEntityService.insertRecord(billReminderRepo, reminder);
     }
     //updating
-    public Boolean updateReminder(BillReminder reminder){
-        // Optional<BillReminder> rem = billReminderRepo.findById(reminder.getRemindID());
-        // if (rem.isPresent()){
-        //     BillReminder got_rem = rem.get();
-        //     got_rem.setRemindName(reminder.getRemindName());
-        //     got_rem.setDeadline(reminder.getDeadline());
-        //     got_rem.setStatus(reminder.getStatus());            
-        //     got_rem.setUserID(reminder.getUserID());            
-
-        //     billReminderRepo.save(got_rem);
-        //     return true;
-        // } else {
-        //     System.out.println("ERROR: Failed to update BillReminder");            
-        //     return false;
-        // }
+    public Boolean updateReminder(BillReminder reminder){        
         return genericEntityService.updateRecord(billReminderRepo, reminder, (entity, updated)->{
             entity.setRemindName(updated.getRemindName());
             entity.setDeadline(updated.getDeadline());
