@@ -3,6 +3,7 @@ package com.hiruna.oracle.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hiruna.oracle.data.dto.AccountDTO;
 import com.hiruna.oracle.data.model.Account;
 import com.hiruna.oracle.service.AccountService;
 
@@ -29,7 +30,7 @@ public class AccountController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> createAccount(@RequestBody Account entity) {
+    public ResponseEntity<?> createAccount(@RequestBody AccountDTO entity) {
         try{
             return ResponseEntity.ok(accountService.createAccount(entity));
         } catch(Exception e){

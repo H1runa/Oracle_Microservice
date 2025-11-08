@@ -2,6 +2,7 @@ package com.hiruna.oracle.service;
 
 import org.springframework.stereotype.Service;
 
+import com.hiruna.oracle.data.dto.AccountDTO;
 import com.hiruna.oracle.data.model.Account;
 import com.hiruna.oracle.data.repo.AccountRepo;
 
@@ -16,8 +17,10 @@ public class AccountService {
     }
 
     //insert
-    public Account createAccount(Account acc){
-        return genericEntityService.insertRecord(accountRepo, acc);
+    public Boolean createAccount(AccountDTO dto){
+        // System.out.println("Description is : "+dto.getDescription());
+        accountRepo.createAccount(dto.getAccID(), dto.getAccName(), dto.getDescription(), dto.getInitialAmount(), dto.getUserID(), dto.getAccountType(), dto.getCategory(), dto.getLimit());
+        return true;
     }
 
     //update
