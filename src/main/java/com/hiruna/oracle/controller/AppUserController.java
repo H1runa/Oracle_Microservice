@@ -88,5 +88,14 @@ public class AppUserController {
         }
     }
     
+    @GetMapping("/login")
+    public ResponseEntity<?> userLogin(@RequestParam String accountName, @RequestParam String password) {
+        try{
+            return ResponseEntity.ok(appUserService.userLogin(accountName, password));
+        } catch(Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+    
     
 }

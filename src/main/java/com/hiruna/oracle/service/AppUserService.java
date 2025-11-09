@@ -84,4 +84,8 @@ public class AppUserService {
     public List<Map<String,Object>> viewAccounts(String category, Long id){
         return userAccountRepo.viewAccounts(category, id);
     }
+
+    public String userLogin(String acc, String pass){
+        return userAccountRepo.userLogin(acc, pass);
+    }
 }

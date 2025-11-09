@@ -136,4 +136,22 @@ public class OracleFunction {
 
         return cursorData;
     }
+
+    public String userLogin(String accountName, String password){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withProcedureName("userLogin");
+        call.declareParameters(
+            new SqlParameter("p_accountName", Types.VARCHAR),
+            new SqlParameter("p_password", Types.VARCHAR),
+            new SqlOutParameter("p_result", Types.VARCHAR)
+        );
+
+        Map<String,Object> params = new HashMap<>();
+        params.put("p_accountName", accountName);
+        params.put("p_password", password);
+
+        Map<String, Object> result = call.execute(params);
+
+        String status = (String) result.get("p_result");
+        return status;
+    }
  }
