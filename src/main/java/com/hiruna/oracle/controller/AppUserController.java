@@ -69,6 +69,24 @@ public class AppUserController {
     public ResponseEntity<Boolean> existsAppUser(@PathVariable Long id) {
         return ResponseEntity.ok(appUserService.existsAppUser(id));
     }
+
+    @GetMapping("/{id}/accountnames")
+    public ResponseEntity<?> userAccountView(@PathVariable Long id) {
+        try{
+            return ResponseEntity.ok(appUserService.userAccountView(id));
+        } catch(Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{category}/{id}/viewaccounts")
+    public ResponseEntity<?> viewAccounts(@PathVariable String category, @PathVariable Long id) {
+        try{
+            return ResponseEntity.ok(appUserService.viewAccounts(category,id));
+        } catch(Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
     
     
 }

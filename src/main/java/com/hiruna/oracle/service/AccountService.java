@@ -1,10 +1,13 @@
 package com.hiruna.oracle.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.hiruna.oracle.data.dto.AccountDTO;
 import com.hiruna.oracle.data.model.Account;
 import com.hiruna.oracle.data.repo.AccountRepo;
+import com.hiruna.oracle.data.repo.function_repo.OracleFunction;
 
 @Service
 public class AccountService {
@@ -47,5 +50,5 @@ public class AccountService {
     //exists
     public Boolean existsAccount(Long id){
         return genericEntityService.existsRecord(accountRepo, id);
-    }
+    }    
 }

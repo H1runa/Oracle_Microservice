@@ -1,11 +1,14 @@
 package com.hiruna.oracle.service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.hiruna.oracle.data.model.AppUser;
 import com.hiruna.oracle.data.repo.AppUserRepo;
+import com.hiruna.oracle.data.repo.function_repo.OracleFunction;
 
 import jakarta.transaction.Transactional;
 
@@ -13,10 +16,12 @@ import jakarta.transaction.Transactional;
 public class AppUserService {
     private AppUserRepo appUserRepo;
     private GenericEntityService genericEntityService;
+    private OracleFunction userAccountRepo;
 
-    public AppUserService(AppUserRepo appUserRepo, GenericEntityService genericEntityService){
+    public AppUserService(AppUserRepo appUserRepo, GenericEntityService genericEntityService, OracleFunction userAccountRepo){
         this.appUserRepo=appUserRepo;
         this.genericEntityService=genericEntityService;
+        this.userAccountRepo=userAccountRepo;
     }
 
     // @Transactional
@@ -69,5 +74,14 @@ public class AppUserService {
         // Boolean exists = appUserRepo.existsById(id);
         // return exists;
         return genericEntityService.existsRecord(appUserRepo, id);
+    }
+
+    //function userAccountView
+    public List<String> userAccountView(Long id){
+        return userAccountRepo.getUserAccountNames(id);
+    }
+
+    public List<Map<String,Object>> viewAccounts(String category, Long id){
+        return userAccountRepo.viewAccounts(category, id);
     }
 }

@@ -7,6 +7,8 @@ import com.hiruna.oracle.data.dto.AccountDTO;
 import com.hiruna.oracle.data.model.Account;
 import com.hiruna.oracle.service.AccountService;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,7 +63,6 @@ public class AccountController {
     @GetMapping("/{id}/exists")
     public ResponseEntity<Boolean> existsAccount(@PathVariable Long id) {
         return ResponseEntity.ok( accountService.existsAccount(id));
-    }
-    
+    }    
     
 }
