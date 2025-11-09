@@ -61,5 +61,24 @@ public class BillReminderController {
     public ResponseEntity<Boolean> existsReminder(@PathVariable Long id) {
         return ResponseEntity.ok(billReminderService.existsReminder(id));
     }
+
+    @GetMapping("/{id}/viewbillreminder")
+    public ResponseEntity<?> viewBillReminder(@PathVariable Long id) {
+        try{
+            return ResponseEntity.ok(billReminderService.viewBillReminder(id));
+        } catch (Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/getupcomingbillreminders")
+    public ResponseEntity<?> getUpcomingBillReminders(@PathVariable Long id) {
+        try{
+            return ResponseEntity.ok(billReminderService.getUpcomingBillReminders(id));
+        } catch (Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+    
     
 }

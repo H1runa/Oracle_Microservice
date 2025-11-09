@@ -64,4 +64,76 @@ public class OracleFunction {
         
         return cursorData;
     }
-}
+
+    public List<Map<String,Object>> viewTransaction(Long id){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("viewTransaction");
+        call.declareParameters(
+            new SqlParameter("v_accID", Types.NUMERIC),
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("v_accID", id);
+
+        Map<String, Object> result = call.execute(params);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String, Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
+
+    public List<Map<String,Object>> viewBillReminder(Long id){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("viewBillReminder");
+        call.declareParameters(
+            new SqlParameter("v_userID", Types.NUMERIC),
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("v_userID", id);
+
+        Map<String, Object> result = call.execute(params);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String, Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
+
+    public List<Map<String,Object>> getUpcomingBillReminders(Long id){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("getUpcomingBillReminders");
+        call.declareParameters(
+            new SqlParameter("v_userID", Types.NUMERIC),
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("v_userID", id);
+
+        Map<String, Object> result = call.execute(params);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String, Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
+
+    public List<Map<String,Object>> getSavingGoals(Long id){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("getSavingGoals");
+        call.declareParameters(
+            new SqlParameter("v_userID", Types.NUMERIC),
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("v_userID", id);
+
+        Map<String, Object> result = call.execute(params);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String, Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
+ }

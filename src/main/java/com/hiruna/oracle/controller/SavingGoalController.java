@@ -55,9 +55,19 @@ public class SavingGoalController {
     }
 
     @GetMapping("/{id}/exists")
-    public ResponseEntity<Boolean> getMethodName(@RequestParam Long id) {
+    public ResponseEntity<Boolean> getMethodName(@PathVariable Long id) {
         return ResponseEntity.ok(savingGoalService.existsSavingGoal(id));
     }
+
+    @GetMapping("/{id}/getsavinggoals")
+    public ResponseEntity<?> getSavingGoals(@PathVariable Long id) {
+        try{
+            return ResponseEntity.ok(savingGoalService.getSavingGoals(id));
+        } catch(Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+    
     
     
 }

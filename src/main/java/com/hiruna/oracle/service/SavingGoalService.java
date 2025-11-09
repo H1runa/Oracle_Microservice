@@ -2,21 +2,26 @@ package com.hiruna.oracle.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.hiruna.oracle.data.model.SavingGoal;
 import com.hiruna.oracle.data.repo.SavingGoalRepo;
+import com.hiruna.oracle.data.repo.function_repo.OracleFunction;
 
 @Service
 public class SavingGoalService {
     private GenericEntityService genericEntityService;
     private SavingGoalRepo savingGoalRepo;
+    private OracleFunction oracleFunction;
 
-    public SavingGoalService(GenericEntityService genericEntityService, SavingGoalRepo savingGoalRepo){
+    public SavingGoalService(GenericEntityService genericEntityService, SavingGoalRepo savingGoalRepo, OracleFunction oracleFunction){
         this.genericEntityService=genericEntityService;
         this.savingGoalRepo=savingGoalRepo;
+        this.oracleFunction=oracleFunction;
     }
 
     public SavingGoal createSavingGoal(SavingGoal goal){
@@ -44,4 +49,8 @@ public class SavingGoalService {
         return localDate;
     }
     
+    //function
+    public List<Map<String,Object>> getSavingGoals(Long id){
+        return oracleFunction.getSavingGoals(id);
+    }
 }

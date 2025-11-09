@@ -9,6 +9,10 @@ import com.hiruna.oracle.service.AccountTransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -29,5 +33,15 @@ public class AccountTransactionController {
             return ResponseEntity.status(500).body(false);
         }
     }
+
+    @GetMapping("/{id}/viewtransaction")
+    public ResponseEntity<?> viewTransaction(@PathVariable Long id) {
+        try{
+            return ResponseEntity.ok(accountTransactionService.viewTransaction(id));
+        } catch (Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+    
     
 }
