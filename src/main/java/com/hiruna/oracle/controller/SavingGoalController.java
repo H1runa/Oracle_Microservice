@@ -68,6 +68,14 @@ public class SavingGoalController {
         }
     }
     
+    @GetMapping("/showgoalprogress")
+    public ResponseEntity<?> showGoalProgress() {
+        try{
+            return ResponseEntity.ok(savingGoalService.ShowGoalProgress());
+        } catch(Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
     
     
 }

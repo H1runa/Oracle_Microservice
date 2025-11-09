@@ -173,4 +173,72 @@ public class OracleFunction {
 
         return cursorData;
     }
+
+    public List<Map<String,Object>> categoryWiseExpenseReport(Long id){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("categoryWiseExpenseReport");
+        call.declareParameters(
+            new SqlParameter("p_userID", Types.NUMERIC),            
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );
+
+        Map<String,Object> params = new HashMap<>();
+        params.put("p_userID", id);
+        
+        Map<String, Object> result = call.execute(params);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String,Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
+
+    public List<Map<String,Object>> budgetTrackingReport(Long id){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("budgetTrackingReport");
+        call.declareParameters(
+            new SqlParameter("p_userID", Types.NUMERIC),            
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );
+
+        Map<String,Object> params = new HashMap<>();
+        params.put("p_userID", id);
+        
+        Map<String, Object> result = call.execute(params);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String,Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
+
+    public List<Map<String,Object>> getForcastedSaving(Long id){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("getForcastedSaving");
+        call.declareParameters(
+            new SqlParameter("v_userID", Types.NUMERIC),            
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );
+
+        Map<String,Object> params = new HashMap<>();
+        params.put("v_userID", id);
+        
+        Map<String, Object> result = call.execute(params);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String,Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
+
+    public List<Map<String,Object>> ShowGoalProgress(){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("ShowGoalProgress");
+        call.declareParameters(                       
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );        
+        
+        Map<String, Object> result = call.execute();
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String,Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
  }

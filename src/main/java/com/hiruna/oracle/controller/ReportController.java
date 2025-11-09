@@ -27,5 +27,33 @@ public class ReportController {
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
+
+    @GetMapping("/categoryexpenditure")
+    public ResponseEntity<?> getCategoryWiseExpenseReport(@RequestParam Long id) {
+        try{
+            return ResponseEntity.ok(reportService.categoryWiseExpenseReport(id));
+        } catch(Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/budgettracking")
+    public ResponseEntity<?> getBudgetTrackingReport(@RequestParam Long id) {
+        try{
+            return ResponseEntity.ok(reportService.budgetTrackingReport(id));
+        } catch(Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+    
+    @GetMapping("/forecastedsaving")
+    public ResponseEntity<?> getForcastedSaving(@RequestParam Long id) {
+        try{
+            return ResponseEntity.ok(reportService.getForcastedSaving(id));
+        } catch(Exception e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+    
     
 }

@@ -53,4 +53,8 @@ public class SavingGoalService {
     public List<Map<String,Object>> getSavingGoals(Long id){
         return oracleFunction.getSavingGoals(id);
     }
+
+    public List<Map<String,Object>> ShowGoalProgress(){
+        return oracleFunction.ShowGoalProgress();
+    }
 }
