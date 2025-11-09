@@ -47,10 +47,11 @@ public class AccountController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteAccount(@PathVariable Long id){
+    @DeleteMapping("/{id}/{category}")
+    public ResponseEntity<Boolean> deleteAccount(@PathVariable Long id, @PathVariable String category){
         try{
-            return ResponseEntity.ok(accountService.deleteAccount(id));
+            System.out.println("CATEGORY: "+category); //delete this
+            return ResponseEntity.ok(accountService.deleteAccount(id, category));
         } catch(Exception e){
             System.out.println("ERROR: Failed to delete account");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);

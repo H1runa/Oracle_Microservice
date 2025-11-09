@@ -16,4 +16,7 @@ public interface AccountRepo extends JpaRepository<Account, Long>{
 
     @Procedure(procedureName = "updateAccount")
     void updateAccount(String p_accName, String p_description, Double p_limit, String p_category, Long p_accID);
+
+    @Procedure(procedureName = "deleteAccount")
+    void deleteAccount(String p_category, Long p_accID);
 }

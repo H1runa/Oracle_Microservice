@@ -38,8 +38,10 @@ public class AccountService {
     }
 
     //delete
-    public Boolean deleteAccount(Long id){
-        return genericEntityService.deleteRecord(accountRepo, id);
+    public Boolean deleteAccount(Long id, String category){
+        // return genericEntityService.deleteRecord(accountRepo, id);
+        accountRepo.deleteAccount(category, id);
+        return true;
     }    
 
     //exists
