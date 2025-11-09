@@ -154,4 +154,23 @@ public class OracleFunction {
         String status = (String) result.get("p_result");
         return status;
     }
+
+    //report functions
+    public List<Map<String,Object>> getMonthlyExpenditure(Long id){
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withFunctionName("getMonthlyExpenditure");
+        call.declareParameters(
+            new SqlParameter("v_id", Types.NUMERIC),            
+            new SqlOutParameter("RETURN_VALUE", OracleTypes.CURSOR)
+        );
+
+        Map<String,Object> params = new HashMap<>();
+        params.put("v_id", id);
+        
+        Map<String, Object> result = call.execute(params);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> cursorData = (List<Map<String,Object>>) result.get("RETURN_VALUE");
+
+        return cursorData;
+    }
  }
